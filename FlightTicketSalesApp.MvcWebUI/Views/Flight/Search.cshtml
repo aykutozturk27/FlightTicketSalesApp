@@ -1,0 +1,78 @@
+﻿@model FlightRequestDto
+@{
+    ViewData["Title"] = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link href="~/lib/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
+}
+
+<form asp-controller="Flight" asp-action="Search" method="post">
+    <div class="form-group row mt-3">
+        <label asp-for="Destination" class="col-sm-4 form-label">Gidiş Havalimanı</label>
+        <div class="col-sm-8">
+            @Html.DropDownListFor(x => x.Destination, ViewBag.AirlineList as SelectList, "Lütfen gidiş havalimanını seçiniz...", new { @class = "form-control" })
+            <span asp-validation-for="Destination" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row mt-3">
+        <label asp-for="Origin" class="col-sm-4 form-label">Dönüş Havalimanı</label>
+        <div class="col-sm-8">
+            @Html.DropDownListFor(x => x.Origin, ViewBag.AirlineList as SelectList, "Lütfen dönüş havalimanını seçiniz...", new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group row mt-3">
+        <label asp-for="DepartureDate" class="col-sm-4 form-label">Gidiş Tarihi</label>
+        <div class="col-sm-8">
+            <div class="input-group date" id="dpDepartureDate">
+                <input type="text" class="form-control" asp-for="DepartureDate" />
+                <span class="input-group-append">
+                    <span class="input-group-text bg-light d-block">
+                        <i class="fa-add"></i>
+                    </span>
+                </span>
+            </div>
+            <span asp-validation-for="DepartureDate" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row mt-3">
+        <label asp-for="ArrivalDate" class="col-sm-4 form-label">Dönüş Tarihi</label>
+        <div class="col-sm-8">
+            <div class="input-group date" id="dpReturnDate">
+                <input type="text" class="form-control" asp-for="ArrivalDate" />
+                <span class="input-group-append">
+                    <span class="input-group-text bg-light d-block">
+                        <i class="fa-add"></i>
+                    </span>
+                </span>
+            </div>
+            <span asp-validation-for="ArrivalDate" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group mt-3 d-grid gap-2 col-4 mx-auto">
+        <button type="submit" class="btn btn-primary" id="btnSearch">Uçuş Ara</button>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="~/lib/font-awesome/js/fontawesome.min.js"></script>
+    <script src="~/lib/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/lib/bootstrap-datepicker/locales/bootstrap-datepicker.tr.min.js"></script>
+    <script>
+        $('#dpDepartureDate').datepicker({
+            format: 'dd/mm/yyyy',
+            language: 'tr'
+        });
+
+        $('#dpReturnDate').datepicker({
+            format: 'dd/mm/yyyy',
+            language: 'tr'
+        });
+    </script>
+}

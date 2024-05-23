@@ -1,0 +1,33 @@
+﻿@model FlightResultDto
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form-group row mt-3">
+    <label class="col-sm-4 form-label">Uçuş Numarası</label>
+    <div class="col-sm-8">
+        <label class="col-sm-4 form-label">@Model.FlightNumber</label>
+    </div>
+</div>
+
+<div class="form-group row mt-3">
+    <label class="col-sm-4 form-label">Gidiş Tarihi</label>
+    <div class="col-sm-8">
+        <label class="col-sm-4 form-label">@Model.ArrivalDateTime</label>
+    </div>
+</div>
+
+<div class="form-group row mt-3">
+    <label class="col-sm-4 form-label">Dönüş Tarihi</label>
+    <div class="col-sm-8">
+        <label class="col-sm-4 form-label">@Model.DepartureDateTime</label>
+    </div>
+</div>
+
+<div class="form-group row mt-3">
+    <label class="col-sm-4 form-label">Fiyatı</label>
+    <div class="col-sm-8">
+        <label class="col-sm-4 form-label">@Model.Price</label>
+    </div>
+</div>

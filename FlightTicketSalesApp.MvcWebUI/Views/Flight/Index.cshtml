@@ -1,0 +1,30 @@
+﻿@model List<FlightResultDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-responsive table-hover table-bordered table-light">
+    <thead>
+        <tr>
+            <th class="text-center">Gidiş Tarihi</th>
+            <th class="text-center">Dönüş Tarihi</th>
+            <th class="text-center">Fiyatı</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">@item.ArrivalDateTime</td>
+                <td class="text-center">@item.DepartureDateTime</td>
+                <td class="text-center">@item.Price</td>
+                <td class="text-center">
+                    <a href="@Url.Action("Detail", "Flight", new { flightNumber = item.FlightNumber })" class="btn btn-primary">Detay</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
