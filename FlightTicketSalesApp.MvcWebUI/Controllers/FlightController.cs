@@ -41,6 +41,7 @@ namespace FlightTicketSalesApp.MvcWebUI.Controllers
 
             var response = RestApiHelper.CallRestWebService<FlightRequestDto, List<FlightResultDto>>(flightRequestDto, CoreConfig.BaseUri, CoreConfig.FlightGetAllByRequest);
             HttpContext.Session.SetObject("Airlines", response);
+            ViewBag.Airlines = HttpContext.Session.GetObject<List<FlightResultDto>>("Airlines");
             return RedirectToAction("Index");
         }
 
@@ -48,6 +49,7 @@ namespace FlightTicketSalesApp.MvcWebUI.Controllers
         public IActionResult Index()
         {
             var flights = HttpContext.Session.GetObject<List<FlightResultDto>>("Airlines");
+            ViewBag.Airlines = HttpContext.Session.GetObject<List<FlightResultDto>>("Airlines");
             return View(flights);
         }
 
@@ -55,6 +57,7 @@ namespace FlightTicketSalesApp.MvcWebUI.Controllers
         public IActionResult Detail(string flightNumber)
         {
             var flights = HttpContext.Session.GetObject<List<FlightResultDto>>("Airlines");
+            ViewBag.Airlines = flights;
             var detailResult = flights.FirstOrDefault(x => x.FlightNumber == flightNumber);
             return View(detailResult);
         }
